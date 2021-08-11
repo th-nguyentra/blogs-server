@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import restapi.io.trainingbackend.entity.Blog;
 import org.springframework.transaction.annotation.Transactional;
+import restapi.io.trainingbackend.entity.Categories;
 import restapi.io.trainingbackend.model.BlogRepository;
 
 import java.util.List;

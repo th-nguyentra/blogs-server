@@ -4,7 +4,6 @@ import javax.persistence.*;
 @Table(name = Blog.PERSISTANCE_NAME)
 public class Blog {
     static final String PERSISTANCE_NAME = "blogs";
-    // define fields
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id")

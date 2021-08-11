@@ -5,6 +5,5 @@ import restapi.io.trainingbackend.entity.Blog;
 
 public interface BlogRepository extends JpaRepository<Blog, Integer> {
 
-    // that's it ... no need to write any code LOL!
 
 }
