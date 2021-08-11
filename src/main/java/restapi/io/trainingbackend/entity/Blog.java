@@ -13,7 +13,7 @@ public class Blog {
     private String title;
 
     @Column(name="category_id")
-    private String category_id;
+    private int category_id;
 
     @Column(name="description")
     private String description;
@@ -33,7 +33,7 @@ public class Blog {
     private int views;
     public  Blog(){}
 
-    public Blog(int id, String title, String category_id, String description, String description_detail, String image, String create_by, String create_date, int views) {
+    public Blog(int id, String title, int category_id, String description, String description_detail, String image, String create_by, String create_date, int views) {
         this.id = id;
         this.title = title;
         this.category_id = category_id;
@@ -61,11 +61,11 @@ public class Blog {
         this.title = title;
     }
 
-    public String getCategory_id() {
+    public int getCategory_id() {
         return category_id;
     }
 
-    public void setCategory_id(String category_id) {
+    public void setCategory_id(int category_id) {
         this.category_id = category_id;
     }
 

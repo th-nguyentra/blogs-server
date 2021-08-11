@@ -7,10 +7,5 @@ import java.util.List;
 public interface BlogService {
     public List<Blog> findAll();
     public Blog findById(int theId);
-
-
     public void save(Blog theBlog);
-
-    public void deleteById(int theId);
-
 }

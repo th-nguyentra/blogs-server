@@ -38,9 +38,4 @@ public class BlogServicempl implements BlogService{
     public void save(Blog theBlog) {
         blogRepository.save(theBlog);
     }
-
-    @Override
-    public void deleteById(int theId) {
-        blogRepository.deleteById(theId);
-    }
 }

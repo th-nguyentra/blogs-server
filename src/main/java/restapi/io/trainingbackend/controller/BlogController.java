@@ -13,7 +13,6 @@ import java.util.List;
 @RestController
 public class BlogController {
     private BlogService blogService;
-
     @Autowired
     public BlogController(BlogService theBlogService) {
         blogService = theBlogService;
@@ -31,7 +30,6 @@ public class BlogController {
         }
         return theBlog;
     }
-
     @PostMapping("")
     public Blog addBlog(@RequestBody Blog theBlog) {
         theBlog.setId(0);
