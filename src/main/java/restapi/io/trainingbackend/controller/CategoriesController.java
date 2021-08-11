@@ -1,8 +1,7 @@
 package restapi.io.trainingbackend.controller;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import restapi.io.trainingbackend.entity.Blog;
 import restapi.io.trainingbackend.entity.Categories;
 import restapi.io.trainingbackend.service.CategoriesService;
 
@@ -21,5 +20,10 @@ public class CategoriesController {
     public List<Categories> findAll() {
         return categoriesService.findAll();
     }
-
+    @PostMapping("")
+    public Categories addCategories(@RequestBody Categories theCategories) {
+        theCategories.setId(0);
+        categoriesService.save(theCategories);
+        return theCategories;
+    }
 }

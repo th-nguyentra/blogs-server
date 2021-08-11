@@ -9,15 +9,6 @@ public class Blog {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id")
     private int id;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     @Column(name="title")
     private String title;
 
@@ -41,7 +32,9 @@ public class Blog {
     @Column(name="views")
     private int views;
     public  Blog(){}
-    public Blog(String title, String category_id, String description, String description_detail, String image, String create_by, String create_date, int views) {
+
+    public Blog(int id, String title, String category_id, String description, String description_detail, String image, String create_by, String create_date, int views) {
+        this.id = id;
         this.title = title;
         this.category_id = category_id;
         this.description = description;
@@ -50,6 +43,14 @@ public class Blog {
         this.create_by = create_by;
         this.create_date = create_date;
         this.views = views;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {

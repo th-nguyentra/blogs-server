@@ -31,7 +31,6 @@ public class BlogController {
         }
         return theBlog;
     }
-    // add mapping for POST /employees - add new employee
 
     @PostMapping("")
     public Blog addBlog(@RequestBody Blog theBlog) {

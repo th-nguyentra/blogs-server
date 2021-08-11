@@ -14,9 +14,19 @@ public class Categories {
     @Column(name="text")
     private String text;
     public Categories(){}
-    public Categories(String name, String text) {
+
+    public Categories(int id, String name, String text) {
+        this.id = id;
         this.name = name;
         this.text = text;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
