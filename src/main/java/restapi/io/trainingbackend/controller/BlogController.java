@@ -10,7 +10,7 @@ import restapi.io.trainingbackend.service.BlogService;
 import java.util.List;
 
 
-@RequestMapping("/blogs")
+@RequestMapping("/blog")
 @RestController
 public class BlogController {
     private BlogService blogService;
