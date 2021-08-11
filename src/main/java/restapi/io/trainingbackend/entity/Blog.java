@@ -2,8 +2,8 @@ package restapi.io.trainingbackend.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-@Entity(name = "blogs")
-@Table(name = "blogs")
+@Entity(name = "blog")
+@Table(name = "blog")
 public class Blog {
 
     @Id
