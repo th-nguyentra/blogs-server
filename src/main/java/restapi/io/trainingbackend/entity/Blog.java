@@ -1,13 +1,16 @@
 package restapi.io.trainingbackend.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
-@Entity(name = Blog.PERSISTANCE_NAME)
-@Table(name = Blog.PERSISTANCE_NAME)
+@Entity(name = "blogs")
+@Table(name = "blogs")
 public class Blog {
-    static final String PERSISTANCE_NAME = "blogs";
+
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id")
     private int id;
+
     @Column(name="title")
     private String title;
 
@@ -30,6 +33,7 @@ public class Blog {
     private String create_date;
     @Column(name="views")
     private int views;
+
     public  Blog(){}
 
     public Blog(int id, String title, int category_id, String description, String description_detail, String image, String create_by, String create_date, int views) {
