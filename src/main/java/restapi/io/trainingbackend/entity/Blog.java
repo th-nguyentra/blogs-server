@@ -1,11 +1,10 @@
 package restapi.io.trainingbackend.entity;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-@Entity(name = "blogs")
-@Table(name = "blogs")
+@Entity(name = Blog.PERSISTANCE_NAME)
+@Table(name = Blog.PERSISTANCE_NAME)
 public class Blog {
-
+    static final String PERSISTANCE_NAME = "blogs";
+    // define fields
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id")
@@ -14,8 +13,9 @@ public class Blog {
     @Column(name="title")
     private String title;
 
-    @Column(name="category_id")
-    private int category_id;
+    @ManyToOne
+    @JoinColumn(name="category_id")
+    private Categories category;
 
     @Column(name="description")
     private String description;
@@ -26,24 +26,29 @@ public class Blog {
     @Column(name="image")
     private String image;
 
-    @Column(name="create_by")
-    private String create_by;
+//    @ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+//            CascadeType.DETACH, CascadeType.REFRESH})
+//    @JoinColumn(name="user_id")
+//    private User user_id;
+
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
 
     @Column(name="create_date")
     private String create_date;
     @Column(name="views")
     private int views;
-
     public  Blog(){}
 
-    public Blog(int id, String title, int category_id, String description, String description_detail, String image, String create_by, String create_date, int views) {
+    public Blog(int id, String title, Categories category, String description, String description_detail, String image, User user, String create_date, int views) {
         this.id = id;
         this.title = title;
-        this.category_id = category_id;
+        this.category = category;
         this.description = description;
         this.description_detail = description_detail;
         this.image = image;
-        this.create_by = create_by;
+        this.user = user;
         this.create_date = create_date;
         this.views = views;
     }
@@ -64,12 +69,12 @@ public class Blog {
         this.title = title;
     }
 
-    public int getCategory_id() {
-        return category_id;
+    public Categories getCategory() {
+        return category;
     }
 
-    public void setCategory_id(int category_id) {
-        this.category_id = category_id;
+    public void setCategory(Categories category) {
+        this.category = category;
     }
 
     public String getDescription() {
@@ -96,12 +101,12 @@ public class Blog {
         this.image = image;
     }
 
-    public String getCreate_by() {
-        return create_by;
+    public User getUser() {
+        return user;
     }
 
-    public void setCreate_by(String create_by) {
-        this.create_by = create_by;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getCreate_date() {

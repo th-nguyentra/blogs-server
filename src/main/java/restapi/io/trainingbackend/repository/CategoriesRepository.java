@@ -1,4 +1,4 @@
-package restapi.io.trainingbackend.model;
+package restapi.io.trainingbackend.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import restapi.io.trainingbackend.entity.Categories;

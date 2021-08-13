@@ -1,6 +1,7 @@
 package restapi.io.trainingbackend.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "categories")
 @Table(name = "categories")
@@ -13,6 +14,10 @@ public class Categories {
     private String name;
     @Column(name="text")
     private String text;
+
+@OneToMany(mappedBy = "category")
+private List<Blog> blogs;
+
     public Categories(){}
 
     public Categories(int id, String name, String text) {
