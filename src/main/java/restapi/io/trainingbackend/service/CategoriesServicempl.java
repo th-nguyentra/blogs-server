@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import restapi.io.trainingbackend.entity.Blog;
 import restapi.io.trainingbackend.entity.Categories;
+import restapi.io.trainingbackend.exception.NotFoundException;
 import restapi.io.trainingbackend.repository.BlogRepository;
 import restapi.io.trainingbackend.repository.CategoriesRepository;
 
@@ -30,7 +31,7 @@ public class CategoriesServicempl implements CategoriesService{
             theCategories = result.get();
         }
         else {
-            throw new RuntimeException("Did not find Categories id - " + theId);
+            throw new NotFoundException("Did not find Categories id-"+theId);
         }
         return theCategories;
     }
