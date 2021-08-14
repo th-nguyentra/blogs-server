@@ -20,16 +20,9 @@ public class CategoriesController {
     public List<Categories> findAll() {
         return categoriesService.findAll();
     }
-    @GetMapping("/{categoriesId}")
+    @GetMapping("/{CategoriesId}")
     public Categories getCategories(@PathVariable int CategoriesId) {
-
-        Categories theCategories = categoriesService.findById(CategoriesId);
-
-        if (theCategories == null) {
-            throw new RuntimeException("Categories id not found - " + theCategories);
-        }
-
-        return theCategories;
+        return categoriesService.findById(CategoriesId);
     }
     @PostMapping
     public Categories addCategories(@RequestBody Categories theCategories) {
