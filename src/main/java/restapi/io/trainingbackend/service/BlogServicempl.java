@@ -1,16 +1,13 @@
 package restapi.io.trainingbackend.service;
 
-import javassist.NotFoundException;
-import lombok.SneakyThrows;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import restapi.io.trainingbackend.entity.Blog;
-import org.springframework.transaction.annotation.Transactional;
+import restapi.io.trainingbackend.exception.NotFoundException;
 import restapi.io.trainingbackend.repository.BlogRepository;
-
-import java.io.NotActiveException;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,11 +19,14 @@ public class BlogServicempl implements BlogService{
     }
 
     @Override
-    public List<Blog> findAll() {
-        return blogRepository.findAll();
+    public Page<Blog> findAll(String keyword,int page,int limit) {
+        if (keyword != null) {
+            return blogRepository.findAll(keyword,PageRequest.of(page,limit));
+        }
+        return blogRepository.findAll(PageRequest.of(page,limit));
     }
 
-    @SneakyThrows
+
     @Override
     public Blog findById(int theId) {
         Optional<Blog> result = blogRepository.findById(theId);
@@ -35,7 +35,7 @@ public class BlogServicempl implements BlogService{
             theBlog = result.get();
         }
         else {
-            throw new NotFoundException("Did not find blog id - " + theId);
+            throw new NotFoundException("Did not find Blog id-"+theId);
         }
         return theBlog;
     }
@@ -44,12 +44,4 @@ public class BlogServicempl implements BlogService{
         return blogRepository.save(theBlog);
     }
 
-
-    @Override
-    public List<Blog> search(String keyword) {
-        if (keyword != null) {
-            return blogRepository.search(keyword);
-        }
-        return blogRepository.findAll();
-    }
 }
