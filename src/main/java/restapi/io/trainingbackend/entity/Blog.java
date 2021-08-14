@@ -26,11 +26,6 @@ public class Blog {
     @Column(name="image")
     private String image;
 
-//    @ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
-//            CascadeType.DETACH, CascadeType.REFRESH})
-//    @JoinColumn(name="user_id")
-//    private User user_id;
-
     @ManyToOne
     @JoinColumn(name="user_id")
     private User user;
