@@ -3,8 +3,6 @@ package restapi.io.trainingbackend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.repository.query.Param;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import restapi.io.trainingbackend.entity.Blog;
 import restapi.io.trainingbackend.service.BlogService;
@@ -21,12 +19,18 @@ public class BlogController {
     public BlogController(BlogService theBlogService) {
         blogService = theBlogService;
     }
-    @GetMapping(params = { "search","page", "limit" })
+    @GetMapping
     public Page<Blog> findAll(
-            @RequestParam("search") String search,
-            @RequestParam("page") int page, @RequestParam("limit") int limit
+            @RequestParam(value = "search", required = false) String search,
+            @RequestParam(value = "page", required = false) int page,
+            @RequestParam(value = "limit", required = false) int limit
     ) {
         return blogService.findAll(search,page,limit);
+    }
+
+    @GetMapping(params = { "category_id"})
+    public List<Blog> filter( @RequestParam(value = "category_id", required = false) int filter) {
+        return blogService.filter(filter);
     }
 
     @GetMapping("/{blogId}")
