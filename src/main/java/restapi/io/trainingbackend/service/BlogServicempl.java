@@ -30,7 +30,7 @@ public class BlogServicempl implements BlogService{
             return blogRepository.findAll(PageRequest.of(page,limit));
         }
         else {
-            if(category_id != 0){
+            if(category_id != 1){
                 return blogRepository.filter(category_id,PageRequest.of(page,limit));
             }else {
                 return blogRepository.findAll(PageRequest.of(page,limit));
