@@ -23,15 +23,21 @@ public class BlogController {
     public Page<Blog> findAll(
             @RequestParam(value = "search", required = false) String search,
             @RequestParam(value = "page", required = false) int page,
-            @RequestParam(value = "limit", required = false) int limit
+            @RequestParam(value = "limit", required = false) int limit,
+            @RequestParam(value = "category_id", required = false) Integer filter
     ) {
-        return blogService.findAll(search,page,limit);
+        System.out.println("search:"+search+"-page:"+page+"-limit:"+limit+"-filter:"+filter);
+        return blogService.findAll(search,filter,page,limit);
     }
 
-    @GetMapping(params = { "category_id"})
-    public List<Blog> filter( @RequestParam(value = "category_id", required = false) int filter) {
-        return blogService.filter(filter);
-    }
+//    @GetMapping(params = { "category_id","page","limit"})
+//    public Page<Blog> filter(
+//            @RequestParam(value = "category_id", required = false) int category_id,
+//            @RequestParam(value = "page", required = false) int page,
+//            @RequestParam(value = "limit", required = false) int limit
+//    ) {
+//        return blogService.filter(category_id,page,limit);
+//    }
 
     @GetMapping("/{blogId}")
     public Blog getBlog(@PathVariable int blogId) {

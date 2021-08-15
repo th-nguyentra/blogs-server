@@ -22,16 +22,28 @@ public class BlogServicempl implements BlogService{
     }
 
     @Override
-    public Page<Blog> findAll(String keyword,int page,int limit) {
-        if (keyword != null) {
-            return blogRepository.findAll(keyword,PageRequest.of(page,limit));
+    public Page<Blog> findAll(String keyword,Integer category_id,int page,int limit) {
+        if (category_id ==null && keyword != null) {
+            return blogRepository.findBlogs(keyword,PageRequest.of(page,limit));
         }
-        return blogRepository.findAll(PageRequest.of(page,limit));
+        else if (category_id ==null && keyword == null) {
+            return blogRepository.findAll(PageRequest.of(page,limit));
+        }
+        else {
+            if(category_id != 0){
+                return blogRepository.filter(category_id,PageRequest.of(page,limit));
+            }else {
+                return blogRepository.findAll(PageRequest.of(page,limit));
+            }
+        }
     }
 
     @Override
-    public List<Blog> filter(int filter) {
-        return blogRepository.filter(filter);
+    public Page<Blog> filter(int filter,int page,int limit) {
+        if (filter !=0) {
+            return blogRepository.filter(filter,PageRequest.of(page,limit));
+        }
+        return blogRepository.findAll(PageRequest.of(page,limit));
     }
 
 

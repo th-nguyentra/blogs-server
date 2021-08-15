@@ -7,6 +7,6 @@ import java.util.List;
 public interface BlogService {
     Blog findById(int theId);
     Blog save(Blog theBlog);
-    Page<Blog> findAll(String keyword,int page,int limit);
-    List<Blog> filter(int filter);
+    Page<Blog> findAll(String keyword,Integer filter,int page,int limit);
+    Page<Blog> filter(int category_id,int page,int limit);
 }
