@@ -11,4 +11,6 @@ import java.util.List;
 public interface BlogRepository extends JpaRepository<Blog, Integer> {
     @Query("SELECT p FROM blogs p WHERE CONCAT(p.title, p.description,p.description_detail) LIKE %?1%")
     Page<Blog> findAll(String keyword,PageRequest of);
+    @Query("select u from blogs u where u.category.id = ?1")
+    List<Blog> filter(int filter);
 }

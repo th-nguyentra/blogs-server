@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import restapi.io.trainingbackend.entity.Blog;
 import restapi.io.trainingbackend.exception.NotFoundException;
 import restapi.io.trainingbackend.repository.BlogRepository;
+
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -25,6 +28,13 @@ public class BlogServicempl implements BlogService{
         }
         return blogRepository.findAll(PageRequest.of(page,limit));
     }
+
+    @Override
+    public List<Blog> filter(int filter) {
+        return blogRepository.filter(filter);
+    }
+
+
 
 
     @Override
